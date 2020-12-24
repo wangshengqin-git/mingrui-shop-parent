@@ -1,0 +1,6 @@
+# Project exclude paths
+/mingrui-shop-basics/mingrui-shop-basic-eureka-server/target/
+/mingrui-shop-basics/mingrui-shop-basiczuul-server/target/
+/mingrui-shop-commoms/mingrui-shopcommon-core/target/
+/mingrui-shop-service/mingrui-shop-servicexxx/target/
+/mingrui-shop-service-api/mingrui-shopservice-api-xxx/target/
