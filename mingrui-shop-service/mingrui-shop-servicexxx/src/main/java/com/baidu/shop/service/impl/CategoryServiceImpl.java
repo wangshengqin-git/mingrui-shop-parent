@@ -27,6 +27,12 @@ public class CategoryServiceImpl extends BaseApiService implements CategoryServi
     private CategoryMapper categoryMapper;
 
     @Override
+    public Result<Object> editCategory(CategoryEntity categoryEntity) {
+        categoryMapper.updateByPrimaryKeySelective(categoryEntity);
+        return this.setResultSuccess();
+    }
+
+    @Override
     public Result<List<CategoryEntity>> getCategoryByPid(Integer pid) {
         CategoryEntity categoryEntity = new CategoryEntity();
         categoryEntity.setParentId(pid);

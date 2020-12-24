@@ -5,8 +5,7 @@ import com.baidu.shop.entity.CategoryEntity;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import javafx.scene.chart.ValueAxis;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,4 +27,7 @@ public interface CategoryService {
     @DeleteMapping(value = "category/del")
     Result<Object>deleteById(Integer id);
 
+    @ApiOperation(value = "修改")
+    @PutMapping(value = "category/edit")
+    Result<Object>editCategory(@RequestBody CategoryEntity categoryEntity);
 }
