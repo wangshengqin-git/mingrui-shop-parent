@@ -26,13 +26,32 @@ public class CategoryServiceImpl extends BaseApiService implements CategoryServi
     @Resource
     private CategoryMapper categoryMapper;
 
-    @Override
+    @Transactional
+    @Override//新增
+    public Result<Object> saveCategory(CategoryEntity categoryEntity) {
+//        if (categoryEntity.getIsParent() != 1){
+//            CategoryEntity cate = new CategoryEntity();
+//            cate.setIsParent(1);
+//            categoryMapper.updateByPrimaryKeySelective(cate);
+//        }
+
+        CategoryEntity cate = new CategoryEntity();
+        cate.setId(categoryEntity.getParentId());
+        cate.setIsParent(1);
+        categoryMapper.updateByPrimaryKeySelective(cate);
+
+        categoryMapper.insertSelective(categoryEntity);
+        return this.setResultSuccess();
+    }
+
+    @Transactional
+    @Override//修改
     public Result<Object> editCategory(CategoryEntity categoryEntity) {
         categoryMapper.updateByPrimaryKeySelective(categoryEntity);
         return this.setResultSuccess();
     }
 
-    @Override
+    @Override//查询
     public Result<List<CategoryEntity>> getCategoryByPid(Integer pid) {
         CategoryEntity categoryEntity = new CategoryEntity();
         categoryEntity.setParentId(pid);
@@ -41,7 +60,7 @@ public class CategoryServiceImpl extends BaseApiService implements CategoryServi
     }
 
     @Transactional
-    @Override
+    @Override//删除
     public Result<Object> deleteById(Integer id) {
         //判断前台传来的id是否合法
             if (null == id || id<= 0) return this.setResultError("id不合法");

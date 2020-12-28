@@ -10,7 +10,6 @@ import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
-
 /**
  * @ClassName MrSwagger2Config
  * @Description: TODO
@@ -21,6 +20,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 @EnableSwagger2
 public class MrSwagger2Config {
+
+
     @Bean
     public Docket createRestApi(){
         return new Docket(DocumentationType.SWAGGER_2)
@@ -30,6 +31,7 @@ public class MrSwagger2Config {
                 .paths(PathSelectors.any())
                 .build();
     }
+
     private ApiInfo apiInfo(){
         return new ApiInfoBuilder()
                 //标题
@@ -45,5 +47,4 @@ public class MrSwagger2Config {
                 //创建API基本信息
                 .build();
     }
-
 }
