@@ -9,17 +9,24 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="mingrui-shop-basic-upload-server" />
+        <module name="mingrui-shopcommon-core" />
         <module name="mingrui-shop-basic-eureka-server" />
         <module name="mingrui-shopservice-api-xxx" />
-        <module name="mingrui-shopcommon-core" />
         <module name="mingrui-shop-basiczuul-server" />
         <module name="mingrui-shop-servicexxx" />
+        <module name="mingrui-shop-basic-uploadserver" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="mingrui-shop-basic-uploadserver" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="mingrui-shop-basic-eureka-server" options="-parameters" />
+      <module name="mingrui-shop-basic-upload-server" options="-parameters" />
+      <module name="mingrui-shop-basic-uploadserver" options="-parameters" />
       <module name="mingrui-shop-basics" options="-parameters" />
       <module name="mingrui-shop-basiczuul-server" options="-parameters" />
       <module name="mingrui-shop-commoms" options="-parameters" />

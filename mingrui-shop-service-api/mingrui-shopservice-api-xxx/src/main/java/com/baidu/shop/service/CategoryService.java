@@ -34,4 +34,8 @@ public interface CategoryService {
     @ApiOperation(value = "新增")
     @PostMapping(value = "category/save")
     Result<Object>saveCategory(@RequestBody CategoryEntity categoryEntity);
+
+    @ApiOperation(value = "根据id查询")
+    @GetMapping(value = "category/brand")
+    Result<List<CategoryEntity>> getCategoryByBrandId(Integer brandId);
 }
