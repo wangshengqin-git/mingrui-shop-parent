@@ -73,12 +73,7 @@ public class CategoryServiceImpl extends BaseApiService implements CategoryServi
     @Transactional
     @Override//删除
     public Result<Object> deleteById(Integer id) {
-        CategoryBrandEntity categoryBrandEntity = new CategoryBrandEntity();
-        categoryBrandEntity.setCategoryId(id);
-        List<CategoryBrandEntity> cate =  categoryBrandMapper.select(categoryBrandEntity);
-        if (cate.size() >= 1){
-            return this.setResultError("存在中间表");
-        }
+
 
         //判断前台传来的id是否合法
         if (null == id || id<= 0) return this.setResultError("id不合法");
@@ -88,6 +83,13 @@ public class CategoryServiceImpl extends BaseApiService implements CategoryServi
         if (null == categoryEntity) return  this.setResultError("数据不存在");
         //根据查询的数据的 判断isid是否为1 1为父节点不能删除
         if (categoryEntity.getIsParent() == 1) return this.setResultError("当前节点为父节点");
+
+        CategoryBrandEntity categoryBrandEntity = new CategoryBrandEntity();
+        categoryBrandEntity.setCategoryId(id);
+        List<CategoryBrandEntity> cate =  categoryBrandMapper.select(categoryBrandEntity);
+        if (cate.size() >= 1){
+            return this.setResultError("存在中间表");
+        }
 
         Example example = new Example(categoryEntity.getClass());
         example.createCriteria().andEqualTo("parentId",categoryEntity.getParentId());
