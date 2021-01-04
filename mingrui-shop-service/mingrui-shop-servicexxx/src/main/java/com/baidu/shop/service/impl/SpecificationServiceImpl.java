@@ -46,18 +46,21 @@ public class SpecificationServiceImpl extends BaseApiService implements Specific
         return this.setResultSuccess(list);
     }
 
+    @Transactional
     @Override
     public Result<JSONObject> saveSpecParam(SpecParamDTO specParamDTO) {
         specParamMapper.insertSelective(BaiduBeanUtil.copyProperties(specParamDTO,SpecParamEntity.class));
         return this.setResultSuccess();
     }
 
+    @Transactional
     @Override
     public Result<JSONObject> updateSpecParam(SpecParamDTO specParamDTO) {
         specParamMapper.updateByPrimaryKey(BaiduBeanUtil.copyProperties(specParamDTO,SpecParamEntity.class));
         return this.setResultSuccess();
     }
 
+    @Transactional
     @Override
     public Result<JSONObject> deleteSpecParam(Integer id) {
         specParamMapper.deleteByPrimaryKey(id);
@@ -80,12 +83,14 @@ public class SpecificationServiceImpl extends BaseApiService implements Specific
         return this.setResultSuccess();
     }
 
+    @Transactional
     @Override
     public Result<JsonObject> updateSpecGroup(SpecGroupDTO specGroupDTO) {
         specGroupMapper.updateByPrimaryKeySelective(BaiduBeanUtil.copyProperties(specGroupDTO,SpecGroupEntity.class));
         return this.setResultSuccess();
     }
 
+    @Transactional
     @Override
     public Result<JsonObject> deleteSpecGroup(Integer id) {
         Example example = new Example(SpecParamEntity.class);
