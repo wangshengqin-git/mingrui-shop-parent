@@ -2,7 +2,9 @@ package com.baidu.shop.service.impl;
 
 import com.baidu.shop.base.BaseApiService;
 import com.baidu.shop.base.Result;
+import com.baidu.shop.entity.CategoryBrandEntity;
 import com.baidu.shop.entity.CategoryEntity;
+import com.baidu.shop.mapper.CategoryBrandMapper;
 import com.baidu.shop.mapper.CategoryMapper;
 import com.baidu.shop.service.CategoryService;
 import org.apache.ibatis.annotations.Update;
@@ -25,6 +27,9 @@ import java.util.List;
 public class CategoryServiceImpl extends BaseApiService implements CategoryService {
     @Resource
     private CategoryMapper categoryMapper;
+
+    @Resource
+    private CategoryBrandMapper categoryBrandMapper;
 
     @Override
     public Result<List<CategoryEntity>> getCategoryByBrandId(Integer brandId) {
@@ -68,8 +73,15 @@ public class CategoryServiceImpl extends BaseApiService implements CategoryServi
     @Transactional
     @Override//删除
     public Result<Object> deleteById(Integer id) {
+        CategoryBrandEntity categoryBrandEntity = new CategoryBrandEntity();
+        categoryBrandEntity.setCategoryId(id);
+        List<CategoryBrandEntity> cate =  categoryBrandMapper.select(categoryBrandEntity);
+        if (null != cate){
+            return this.setResultError("存在中间表");
+        }
+
         //判断前台传来的id是否合法
-            if (null == id || id<= 0) return this.setResultError("id不合法");
+        if (null == id || id<= 0) return this.setResultError("id不合法");
         //根据id查询一条数据
         CategoryEntity categoryEntity = categoryMapper.selectByPrimaryKey(id);
         //判断查询一条数据是否存在
