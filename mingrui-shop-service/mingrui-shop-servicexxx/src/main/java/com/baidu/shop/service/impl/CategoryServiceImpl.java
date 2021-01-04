@@ -76,7 +76,7 @@ public class CategoryServiceImpl extends BaseApiService implements CategoryServi
         CategoryBrandEntity categoryBrandEntity = new CategoryBrandEntity();
         categoryBrandEntity.setCategoryId(id);
         List<CategoryBrandEntity> cate =  categoryBrandMapper.select(categoryBrandEntity);
-        if (null != cate){
+        if (cate.size() >= 1){
             return this.setResultError("存在中间表");
         }
 
