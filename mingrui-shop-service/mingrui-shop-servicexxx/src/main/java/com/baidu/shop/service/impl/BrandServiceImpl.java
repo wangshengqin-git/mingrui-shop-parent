@@ -66,6 +66,7 @@ public class BrandServiceImpl extends BaseApiService implements BrandService {
     @Override
     public Result<JsonObject> saveBrandInfo(BrandDTO brandDTO) {
         BrandEntity brandEntity = BaiduBeanUtil.copyProperties(brandDTO, BrandEntity.class);
+
         brandEntity.setLetter(PinYinUtil.getUpperCase(String.valueOf(brandEntity.getName().toCharArray()[0]),false).toCharArray()[0]);
 
         brandMapper.insertSelective(brandEntity);
@@ -78,7 +79,7 @@ public class BrandServiceImpl extends BaseApiService implements BrandService {
         List<CategoryBrandEntity> categoryBrandEntities = new ArrayList<>();
 
         if (categories.contains(",")){
-            gString[] categoryArr = categories.split(",");
+            String[] categoryArr = categories.split(",");
 
             for (String s : categoryArr){
                 CategoryBrandEntity categoryBrandEntity = new CategoryBrandEntity();
