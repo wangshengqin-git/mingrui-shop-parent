@@ -8,10 +8,7 @@ import com.github.tobato.fastdfs.service.FastFileStorageClient;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,6 +22,7 @@ import java.io.InputStream;
  **/
 @RestController
 @RequestMapping(value = "upload")
+//@CrossOrigin(origins = "http://manage.mrshop.com")
 @Slf4j
 public class FastDFSUploadController {
     //图片服务器的地址

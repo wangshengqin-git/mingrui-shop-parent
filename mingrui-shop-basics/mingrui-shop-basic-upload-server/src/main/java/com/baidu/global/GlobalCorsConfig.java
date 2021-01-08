@@ -15,7 +15,7 @@ import org.springframework.web.filter.CorsFilter;
  **/
 @Configuration
 public class GlobalCorsConfig {
-   /* @Bean
+    @Bean
     public CorsFilter corsFilter() {
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         final CorsConfiguration config = new CorsConfiguration();
@@ -33,5 +33,5 @@ public class GlobalCorsConfig {
         source.registerCorsConfiguration("/**", config);
         //3.返回新的CorsFilter.
         return new CorsFilter(source);
-    }*/
+    }
 }
