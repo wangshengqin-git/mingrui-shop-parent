@@ -32,7 +32,6 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>5.1.30</version>
             <scope>runtime</scope><!--项目运行阶段使用-->
 
         </dependency>
